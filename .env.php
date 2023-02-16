@@ -2,9 +2,9 @@
 function credenciales() {
     return [
         'usuario'=>'root' ,
-        'clave'=>'npEGa2014',
+        'clave'=>'----',
         'servidor'=>'localhost',
-        'base_de_datos'=>'ejerciciomsql'
+        'base_de_datos'=>'----'
     ];
 }
 ?>
