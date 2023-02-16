@@ -44,9 +44,25 @@ if ($_POST['tipo'] === "vd") {
         header('Location: ' . $redirigir);
     }
 
+}
 
+if ($_POST['tipo'] === "md") {
 
-
+    $repo = new RepoUser();
+    $modif = true;  
+    $modif = $repo->modificar($_POST['id'],$_POST['edad']);
+ 
+    if($modif){
+        $mensaje = "Edad modificada correctamente";    
+        $redirigir = 'crud.php?mensaje=' . $mensaje;
+  
+        
+    } else {
+        $mensaje = "No se pudo modificar la edad";    
+        $redirigir = 'crud.php?mensaje=' . $mensaje;
+    }
+    
+    header('Location: ' . $redirigir);
 }
 
 ?>

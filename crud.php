@@ -28,8 +28,8 @@ require_once 'RepoUser.php';
         <select name="tipo" onchange="cambioTipo(this.value)">
             <option >Seleccionar</option>
             <option value="cu">Crear Usuario</option>
-            <option value="vd">Visualizar Datos</option>
-            <option value="md">Modificar datos</option>
+            <option value="vd">Visualizar datos por id</option>
+            <option value="md">Modificar edad por ID</option>
             <option value="bu">Borrar Usuario</option>
           </select><br><br>
 

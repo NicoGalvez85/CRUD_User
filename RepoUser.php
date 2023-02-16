@@ -75,6 +75,23 @@ class RepoUser
 
             echo '<h4><a href="crud.php"> Volver</a></h4>';
             return true;        
-    }
+    } 
+    
+    
+    public function modificar($id,$edad)
+        {
+            $q = "UPDATE usuarios SET EDAD = ?  WHERE ID = ?";
+            $query = self::$conexion->prepare($q);            
+            $query->bind_param("sd", $edad, $id);
+
+            if ($query->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
 
 }
+
+   

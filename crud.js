@@ -73,7 +73,7 @@ function cambioTipo(tipo) {
       f.submit.style.display="block"; 
       f.ver.style.display="none";  
 
-    } else if(tipo == "vd" || tipo == "md" || tipo == "bu"){
+    } else if(tipo == "vd" || tipo == "bu"){
 
 
       let titulo = document.createElement("label");
@@ -93,6 +93,40 @@ function cambioTipo(tipo) {
 
       f.ver.style.display="block";  
       f.submit.style.display="none"; 
+
+    }else if (tipo == "md"){
+      let titulo = document.createElement("label");
+      titulo.innerHTML = "<h3>Ingresa el ID del usuario</h3>";
+
+      let id = document.createElement("label");
+      id.for= "id";
+      id.innerHTML = "<br>ID ";
+      let putId = document.createElement("input");
+      putId.type = "number";
+      putId.name = "id";
+      putId.required = true;
+
+      let titulo2 = document.createElement("label");
+      titulo2.innerHTML = "<h3>Ingresa la edad nueva</h3>";
+
+      let edad = document.createElement("label");
+      edad.for= "edad";
+      edad.innerHTML = "<br>Edad  ";
+      let putEdad = document.createElement("input");
+      putEdad.type = "number";
+      putEdad.name = "edad";
+      putEdad.required = true;
+
+      mostrar.appendChild(titulo);
+      mostrar.appendChild(id);
+      mostrar.appendChild(putId);
+      mostrar.appendChild(titulo2);
+      mostrar.appendChild(edad);
+      mostrar.appendChild(putEdad);
+
+      f.submit.style.display="block"; 
+      f.ver.style.display="none";  
+
     } else{
         f.ver.style.display="none";  
       f.submit.style.display="none"; 
