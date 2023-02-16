@@ -65,4 +65,23 @@ if ($_POST['tipo'] === "md") {
     header('Location: ' . $redirigir);
 }
 
+
+    if ($_POST['tipo'] === "bu") {
+
+        $repo = new RepoUser();
+        $borrar = true;  
+        $borrar = $repo->borrar($_POST['id']);
+    
+        if($borrar){
+            $mensaje = "Usuario eliminado correctamente";    
+            $redirigir = 'crud.php?mensaje=' . $mensaje;
+    
+            
+        } else {
+            $mensaje = "No se pudo eliminar el usuario";    
+            $redirigir = 'crud.php?mensaje=' . $mensaje;
+        }
+        
+        header('Location: ' . $redirigir);
+    }
 ?>

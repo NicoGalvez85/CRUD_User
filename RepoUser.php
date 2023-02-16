@@ -91,6 +91,21 @@ class RepoUser
             }
         }
 
+        
+    public function borrar($id)
+    {
+        $q = "DELETE FROM usuarios WHERE ID = ? ";
+        $query = self::$conexion->prepare($q);
+
+        $query->bind_param("d", $id);
+
+        if ($query->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }
 

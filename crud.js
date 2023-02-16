@@ -91,8 +91,8 @@ function cambioTipo(tipo) {
       mostrar.appendChild(id);
       mostrar.appendChild(putId);
 
-      f.ver.style.display="block";  
-      f.submit.style.display="none"; 
+      f.ver.style.display="none";  
+      f.submit.style.display="block"; 
 
     }else if (tipo == "md"){
       let titulo = document.createElement("label");
