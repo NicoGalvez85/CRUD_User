@@ -59,18 +59,22 @@ class RepoUser
         $query->execute();
 
         $data = $query->fetchAll();
-        foreach ($data as $valores) :
+            if(empty($data)){
+                // echo '<h4>No se encuentra el ID</h4>' ;
+                return false;
+            }
+            foreach ($data as $valores) :               
 
             echo 'DNI =' . $valores["ID"].'<br>';
             echo 'NOMBRE =' . $valores["NOMBRE"].'<br>';
             echo 'EDAD =' . $valores["EDAD"].'<br>';
             echo 'SEXO =' . $valores["SEXO"].'<br>';
-            echo 'ROL =' . $valores["DESCRIPCION"];            
-        endforeach;
-        if ($valores["ID"]==null) {
-            return false;
-        }
-        
+            echo 'ROL =' . $valores["DESCRIPCION"]; 
+            
+            endforeach; 
+
+            echo '<h4><a href="crud.php"> Volver</a></h4>';
+            return true;        
     }
 
 }

@@ -18,9 +18,9 @@ if($_POST['tipo'] === "cu"){
         $sexo,
         $_POST['rol']);
 
-    $operacion = $repo->save($user);
+    $guardar= $repo->save($user);
 
-    if($operacion){
+    if($guardar){
         $mensaje = "Usuario guardado exitosamente";
     }else{
         $mensaje = "No se pudo guardar el usuario";
@@ -34,15 +34,19 @@ if($_POST['tipo'] === "cu"){
 if ($_POST['tipo'] === "vd") {
 
     $repo = new RepoUser();
-
-    $operacion = $repo->visualizar($_POST['id']);
-
-    if($operacion==false){
-        $mensaje = "No se encuentra el ID";
+    $visual = true;  
+    $visual = $repo->visualizar($_POST['id']);
+ 
+    if($visual==false){
+        $mensaje = "No se pudo encontrar el ID";    
         $redirigir = 'crud.php?mensaje=' . $mensaje;
-
+  
         header('Location: ' . $redirigir);
     }
 
+
+
+
 }
+
 ?>
