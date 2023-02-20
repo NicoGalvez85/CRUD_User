@@ -25,6 +25,9 @@ class RepoUser
         }
    }
 
+
+//    Se modifico la tabla original "usuarios" para que sea auto incremental en 1
+
    public function save(User $usuario)
     {
         
@@ -52,29 +55,35 @@ class RepoUser
 
     public function visualizar($id){
         $usuario = 'root';
-        $password = 'npEGa2014'; // cuidado, aca va el password db local de c/u
+        $password = '?'; // cuidado, aca va el password db local de c/u
         $db = new PDO('mysql:host=localhost;dbname=ejerciciomsql', $usuario, $password);
       
-        $query = $db->prepare("SELECT ID, NOMBRE, EDAD, SEXO, r.DESCRIPCION FROM usuarios u INNER JOIN ROLES r WHERE ID = $id AND r.ROLID = u.ROLID ");
+        $query = $db->prepare("SELECT ID, NOMBRE, EDAD, SEXO, r.DESCRIPCION FROM usuarios u LEFT JOIN ROLES r ON u.ROLID = r.ROLID where u.ID = $id");
         $query->execute();
 
         $data = $query->fetchAll();
-            if(empty($data)){
-                // echo '<h4>No se encuentra el ID</h4>' ;
-                return false;
-            }
-            foreach ($data as $valores) :               
 
-            echo 'DNI =' . $valores["ID"].'<br>';
-            echo 'NOMBRE =' . $valores["NOMBRE"].'<br>';
-            echo 'EDAD =' . $valores["EDAD"].'<br>';
-            echo 'SEXO =' . $valores["SEXO"].'<br>';
-            echo 'ROL =' . $valores["DESCRIPCION"]; 
+            if(empty($data)){
+                return false;
+            } else {
+                foreach ($data as $valores) :
+                    echo 'DNI =' . $valores["ID"].'<br>';
+                    echo 'NOMBRE =' . $valores["NOMBRE"].'<br>';
+                    echo 'EDAD =' . $valores["EDAD"].'<br>';
+                    echo 'SEXO =' . $valores["SEXO"].'<br>';
+
+                    if(empty($valores["DESCRIPCION"])){
+                        echo 'ROL = Sin rol asignado'; 
+                    } else {
+                        echo 'ROL =' . $valores["DESCRIPCION"]; 
+                    }                  
             
             endforeach; 
 
-            echo '<h4><a href="crud.php"> Volver</a></h4>';
-            return true;        
+            echo '<br><p><a href="crud.php"> Volver</a></p>';
+            return true; 
+            }
+       
     } 
     
     
@@ -94,7 +103,7 @@ class RepoUser
         
     public function borrar($id)
     {
-        $q = "DELETE FROM usuarios WHERE ID = ? ";
+        $q = 'DELETE FROM usuarios WHERE ID = ? ';
         $query = self::$conexion->prepare($q);
 
         $query->bind_param("d", $id);
@@ -105,6 +114,25 @@ class RepoUser
             return false;
         }
     }
+
+    public function grafico(){
+
+        
+        $usuario = 'root';
+        $password = '?'; // cuidado, aca va el password db local de c/u
+        $db = new PDO('mysql:host=localhost;dbname=ejerciciomsql', $usuario, $password);
+        $query = $db->prepare('SELECT count(SEXO) as "CANTIDAD", SEXO FROM usuarios group by SEXO');
+              $query->execute();
+
+        $data = $query->fetchAll();
+            if(empty($data)){
+                // echo '<h4>No se encuentra el ID</h4>' ;
+                return false;
+            }
+
+            return [$data[0]["CANTIDAD"],$data[1]["CANTIDAD"]];
+
+    } 
 
 
 }

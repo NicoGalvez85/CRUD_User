@@ -1,6 +1,7 @@
 <?
 require_once 'operation.php';
 require_once 'RepoUser.php';
+require_once 'grafica.php';
 
 ?>
 
@@ -8,12 +9,15 @@ require_once 'RepoUser.php';
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
         <title>Bienvenido al sistema</title>
     </head>
-    <body >
-      <div>
-      <h1>Elija una opción</h1>
+    <body class="mx-auto w-50 p-3 mb-2 bg-dark text-white" >
+      <div class="m-5">
+      <h1 >Elija una opción</h1>
       </div>    
       <div >
         <?php
@@ -33,14 +37,27 @@ require_once 'RepoUser.php';
             <option value="bu">Borrar Usuario</option>
           </select><br><br>
 
-          <div id="segunTipo"></div><br>
-            
-          <input name="submit" type="submit" value="Realizar" style="display:none">
-          <input name="ver" type="submit" value="Visualizar" style="display:none">
+          <div id="segunTipo" class="row">
+
+          </div><br>
+          <div class="form-check">
+            <div id="radioM"></div>
+          </div><br>
+          <div class="form-check">
+            <div id="radioH"></div>
+          </div><br>
+
+            <div class="m-5">
+                <input name="submit" type="submit" value="Realizar" style="display:none">
+                <input name="ver" type="submit" value="Visualizar" style="display:none">
+            </div>
+ 
         </form>
         
-      </div>
+        <p><a href="grafica.php">Visualizar grafico de sexos</a></p>
 
+      </div>
+      <div style="max-width: 100%; margin: 1em;" id="chart"></div>
 
       <script src="crud.js"></script>
 

@@ -5,6 +5,8 @@ function cambioTipo(tipo) {
 
     var f = document.getElementById("f");
     var mostrar = document.getElementById("segunTipo");
+    var radioH =document.getElementById("radioH");
+    var radioM =document.getElementById("radioM");
 
     while( mostrar.firstChild ) {
     mostrar.removeChild(mostrar.firstChild);
@@ -17,7 +19,7 @@ function cambioTipo(tipo) {
 
       let nombre = document.createElement("label");
       nombre.for = "nombre";
-      nombre.innerHTML = "<br>Nombre  ";
+      nombre.innerHTML = "Nombre  ";
       let putName = document.createElement("input");
       putName.type = "text";
       putName.name = "nombre";
@@ -33,7 +35,7 @@ function cambioTipo(tipo) {
 
       let rol = document.createElement("label");
       rol.for= "rol";
-      rol.innerHTML = "<br>Rol ";
+      rol.innerHTML = "<br>Rol (0/1/2/3)";
       let putRol = document.createElement("input");
       putRol.type = "number";
       putRol.name = "rol";
@@ -43,19 +45,23 @@ function cambioTipo(tipo) {
 
       let h = document.createElement("label");
       h.for= "hombre"
-      h.innerHTML = "<br>Masculino";
+      h.innerHTML = "Masculino";
+      h.className += " form-check-label";
       let putH = document.createElement("input");
       putH.type = "radio";
       putH.name = "sexo";
       putH.value = "h";
+      putH.className += " form-check-input";
       putH.checked = "checked";
 
       let m = document.createElement("label");
       m.for= "mujer";
-      m.innerHTML = "<br>Femenino";
+      m.innerHTML = "Femenino";
+      m.className += " form-check-label";
       let putM = document.createElement("input");
       putM.type = "radio";
       putM.name = "sexo";
+      putM.className += " form-check-input";
       putM.value="m";         
 
       mostrar.appendChild(titulo);
@@ -65,10 +71,10 @@ function cambioTipo(tipo) {
       mostrar.appendChild(putEdad);
       mostrar.appendChild(rol);
       mostrar.appendChild(putRol);
-      mostrar.appendChild(m);
-      mostrar.appendChild(putM);
-      mostrar.appendChild(h);
-      mostrar.appendChild(putH);
+      radioH.appendChild(h);
+      radioH.appendChild(putH);
+      radioM.appendChild(m);
+      radioM.appendChild(putM);
 
       f.submit.style.display="block"; 
       f.ver.style.display="none";  
@@ -80,12 +86,15 @@ function cambioTipo(tipo) {
       titulo.innerHTML = "<h2>Ingresa el ID del usuario</h2>";
 
       let id = document.createElement("label");
-      id.for= "id";
-      id.innerHTML = "<br>ID ";
       let putId = document.createElement("input");
       putId.type = "number";
       putId.name = "id";
+      id.for= "id";
+      id.innerHTML = "<br>ID ";
       putId.required = true;
+      
+      
+      
 
       mostrar.appendChild(titulo);
       mostrar.appendChild(id);
